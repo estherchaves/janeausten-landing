@@ -28,5 +28,4 @@ npm run build:artifact   # página única para pré-visualização
 
 ## Publicação
 
-Cada push para `main` corre o lint e os testes, gera o build e publica o site no GitHub Pages (`.github/workflows/deploy.yml`).
-Para ativar: em **Settings → Pages**, escolher **GitHub Actions** como fonte. O site fica em `https://<utilizador>.github.io/janeausten-landing/`.
+https://estherchaves.github.io/janeausten-landing/
