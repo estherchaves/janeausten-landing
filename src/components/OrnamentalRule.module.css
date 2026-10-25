@@ -1,0 +1,47 @@
+.rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+.mark {
+  width: 56px;
+  height: 24px;
+  flex: none;
+  fill: none;
+  stroke: var(--detail);
+  stroke-width: 1;
+}
+
+.draw .line {
+  transform: scaleX(0);
+  animation: extend 1.2s var(--ease-in-out) 0.2s forwards;
+}
+
+.draw .left {
+  transform-origin: right center;
+}
+
+.draw .right {
+  transform-origin: left center;
+}
+
+@keyframes extend {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw .line {
+    transform: none;
+    animation: none;
+  }
+}

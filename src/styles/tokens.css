@@ -1,0 +1,278 @@
+/* ==========================================================================
+   JANE AUSTEN · Design tokens
+   Layout concept: a museum catalogue printed as a fashion magazine —
+   asymmetric 12-column grid, oversized type, wide margins, small captions.
+   Ivory and ink dominate; burgundy is the dramatic accent; gold is a detail.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Core palette (brief) ------------------------------------------- */
+  --c-burgundy: #501c2b;
+  --c-ivory: #f5f0e7;
+  --c-ink: #191716;
+  --c-rose: #c9a2a0;
+  --c-sage: #87927b;
+  --c-gold: #b59a65;
+
+  /* Derived neutrals, biased toward the burgundy so greys never read as default */
+  --c-ivory-deep: #ebe3d6;   /* paper in shadow, panels */
+  --c-ivory-soft: #faf7f1;   /* highlights, letter paper */
+  --c-ink-soft: #3a3331;     /* secondary text on ivory (contrast 11:1) */
+  --c-ink-muted: #6b605c;    /* captions on ivory (contrast 5.6:1) */
+  --c-line: rgba(25, 23, 22, 0.16);
+  --c-line-strong: rgba(25, 23, 22, 0.42);
+  --c-burgundy-deep: #3a121e;
+  --c-gold-soft: #d8c79f;
+
+  /* --- Illustration tones ----------------------------------------------
+     Gouache and watercolour accents taken from the moodboard (book spines,
+     garden canopies, painted interiors). Used for washes, spines and
+     botanical details, never for running text. */
+  --c-porcelain: #7d93b2;    /* faded Wedgwood blue */
+  --c-slate: #5b6577;        /* bound-cloth blue-grey */
+  --c-leaf: #9db57a;         /* sunlit leaf wash */
+  --c-mint: #a9c7b8;         /* painted mint spine */
+  --c-ochre: #dca35a;        /* paperback ochre */
+  --c-blush: #e2b7b0;        /* chintz pink */
+  --c-mist: #cfd0d6;         /* grey-lilac backdrop */
+  --c-sepia: #6e5a4a;        /* ink wash on stone */
+
+  /* --- Semantic roles (components use these, never the raw palette) ---- */
+  --surface: var(--c-ivory);
+  --surface-raised: var(--c-ivory-soft);
+  --surface-sunken: var(--c-ivory-deep);
+  --text: var(--c-ink);
+  --text-soft: var(--c-ink-soft);
+  --text-muted: var(--c-ink-muted);
+  --accent: var(--c-burgundy);
+  --accent-contrast: var(--c-ivory);
+  --detail: var(--c-gold);
+  --rule: var(--c-line);
+  --rule-strong: var(--c-line-strong);
+  --focus: var(--c-burgundy);
+
+  /* --- Typography ------------------------------------------------------ */
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', 'Garamond', 'Baskerville', 'Times New Roman', serif;
+  --font-sans: 'DM Sans', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --font-hand: 'Pinyon Script', 'Snell Roundhand', 'Apple Chancery', cursive;
+  --font-title: var(--font-hand);   /* the cover name is written, not set */
+
+  /* Fluid type scale — minimum at 360px, maximum at 1440px */
+  --fs-caption: 0.6875rem;                                  /* 11px labels */
+  --fs-small: 0.8125rem;                                    /* 13px */
+  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);      /* 16–17px */
+  --fs-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);      /* serif lead */
+  --fs-h4: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --fs-h3: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+  --fs-h2: clamp(2.5rem, 1.8rem + 3.2vw, 5rem);
+  --fs-h1: clamp(3.25rem, 1.6rem + 7.6vw, 9.5rem);
+  --fs-mega: clamp(4.25rem, 0.8rem + 15vw, 15rem);           /* display specimens */
+  --fs-signature: clamp(5.5rem, 2rem + 16vw, 16rem);        /* Jane Austen, in script */
+
+  --lh-tight: 0.88;
+  --lh-heading: 1.02;
+  --lh-body: 1.62;
+  --tracking-caps: 0.18em;
+  --tracking-wide: 0.32em;
+  --measure: 62ch;
+
+  /* --- Space & layout -------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: clamp(4.5rem, 3rem + 6vw, 9rem);  /* between chapters */
+
+  --gutter: max(16px, 4vw);
+  --page-max: 1440px;
+  --nav-height: 64px;
+
+  /* --- Shape & depth: restrained, editorial ---------------------------- */
+  --radius-0: 0;
+  --radius-pill: 999px;
+  --shadow-paper: 0 1px 0 rgba(25, 23, 22, 0.04), 0 18px 40px -24px rgba(58, 18, 30, 0.35);
+
+  /* --- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 900ms;
+
+  --z-nav: 50;
+  --z-overlay: 80;
+  --z-cursor: 100;
+
+  /* Speckled paper: scattered ink flecks, as in hand-made rag paper */
+  --speckle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' fill='%23191716'%3E%3Ccircle cx='0' cy='42' r='0.9' fill-opacity='0.35'/%3E%3Ccircle cx='70' cy='15' r='1.1' fill-opacity='0.48'/%3E%3Ccircle cx='123' cy='166' r='0.5' fill-opacity='0.20'/%3E%3Ccircle cx='170' cy='215' r='0.5' fill-opacity='0.20'/%3E%3Ccircle cx='134' cy='220' r='1.2' fill-opacity='0.45'/%3E%3Ccircle cx='169' cy='29' r='0.8' fill-opacity='0.40'/%3E%3Ccircle cx='291' cy='244' r='0.5' fill-opacity='0.42'/%3E%3Ccircle cx='105' cy='202' r='1.5' fill-opacity='0.30'/%3E%3Ccircle cx='79' cy='314' r='1.2' fill-opacity='0.39'/%3E%3Ccircle cx='23' cy='202' r='0.8' fill-opacity='0.32'/%3E%3Ccircle cx='245' cy='153' r='0.5' fill-opacity='0.29'/%3E%3Ccircle cx='53' cy='156' r='1.6' fill-opacity='0.20'/%3E%3Ccircle cx='289' cy='161' r='0.7' fill-opacity='0.50'/%3E%3Ccircle cx='158' cy='85' r='0.6' fill-opacity='0.20'/%3E%3Ccircle cx='160' cy='123' r='0.8' fill-opacity='0.35'/%3E%3Ccircle cx='149' cy='301' r='0.5' fill-opacity='0.43'/%3E%3Ccircle cx='265' cy='40' r='0.5' fill-opacity='0.46'/%3E%3Ccircle cx='201' cy='236' r='1.5' fill-opacity='0.46'/%3E%3Ccircle cx='75' cy='98' r='0.7' fill-opacity='0.37'/%3E%3Ccircle cx='271' cy='132' r='0.8' fill-opacity='0.31'/%3E%3Ccircle cx='172' cy='150' r='0.5' fill-opacity='0.23'/%3E%3Ccircle cx='183' cy='257' r='0.5' fill-opacity='0.34'/%3E%3Ccircle cx='306' cy='239' r='1.1' fill-opacity='0.38'/%3E%3Ccircle cx='269' cy='51' r='0.7' fill-opacity='0.22'/%3E%3Ccircle cx='29' cy='88' r='0.5' fill-opacity='0.19'/%3E%3Ccircle cx='227' cy='300' r='0.5' fill-opacity='0.28'/%3E%3Ccircle cx='284' cy='209' r='0.6' fill-opacity='0.30'/%3E%3Ccircle cx='124' cy='160' r='0.6' fill-opacity='0.45'/%3E%3Ccircle cx='189' cy='306' r='0.6' fill-opacity='0.49'/%3E%3Ccircle cx='131' cy='45' r='0.6' fill-opacity='0.34'/%3E%3Ccircle cx='148' cy='308' r='0.5' fill-opacity='0.28'/%3E%3Ccircle cx='201' cy='41' r='1.0' fill-opacity='0.44'/%3E%3Ccircle cx='79' cy='152' r='0.6' fill-opacity='0.19'/%3E%3Ccircle cx='289' cy='136' r='0.6' fill-opacity='0.31'/%3E%3C/svg%3E");
+
+  /* Paper grain, generated (no image request) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   Inverted surface: ink and burgundy chapters reuse the same components.
+   -------------------------------------------------------------------------- */
+[data-surface='ink'] {
+  color-scheme: dark;
+  --surface: var(--c-ink);
+  --surface-raised: #24201f;
+  --surface-sunken: #110f0f;
+  --text: var(--c-ivory);
+  --text-soft: #d9d0c3;
+  --text-muted: #a99d93;
+  --accent: var(--c-rose);
+  --accent-contrast: var(--c-ink);
+  --rule: rgba(245, 240, 231, 0.16);
+  --rule-strong: rgba(245, 240, 231, 0.42);
+  --focus: var(--c-gold-soft);
+}
+
+[data-surface='mist'] {
+  color-scheme: light;
+  --surface: var(--c-mist);
+  --surface-raised: #dcdde2;
+  --surface-sunken: #bfc0c8;
+  --text: var(--c-ink);
+  --text-soft: #2f2b2c;
+  --text-muted: #4f4a4c;
+  --accent: var(--c-burgundy);
+  --accent-contrast: var(--c-ivory);
+  --rule: rgba(25, 23, 22, 0.18);
+  --rule-strong: rgba(25, 23, 22, 0.5);
+  --focus: var(--c-burgundy);
+}
+
+[data-surface='burgundy'] {
+  color-scheme: dark;
+  --surface: var(--c-burgundy);
+  --surface-raised: #5f2536;
+  --surface-sunken: var(--c-burgundy-deep);
+  --text: var(--c-ivory);
+  --text-soft: #eadfd8;
+  --text-muted: #cdb3b1;
+  --accent: var(--c-gold-soft);
+  --accent-contrast: var(--c-burgundy-deep);
+  --rule: rgba(245, 240, 231, 0.2);
+  --rule-strong: rgba(245, 240, 231, 0.5);
+  --focus: var(--c-gold-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Novel worlds — the Novel Explorer swaps these with data-novel="…".
+   Each world redefines the same semantic roles.
+   -------------------------------------------------------------------------- */
+[data-novel='pride'] {
+  color-scheme: dark;
+  --surface: #501c2b;
+  --surface-raised: #5f2536;
+  --text: #f5f0e7;
+  --text-soft: #eadfd8;
+  --text-muted: #cdb3b1;
+  --accent: #d8c79f;
+  --accent-contrast: #3a121e;
+  --rule: rgba(245, 240, 231, 0.22);
+  --focus: #d8c79f;
+  --rule-strong: rgba(245, 240, 231, 0.5);
+  --detail: #d8c79f;
+  --wash-1: #9b3d52;
+  --wash-2: #c9a2a0;
+  --plate: #3a121e;
+}
+
+[data-novel='sense'] {
+  color-scheme: light;
+  --surface: #e9dcd6;
+  --surface-raised: #f3ebe6;
+  --text: #2c2a24;
+  --text-soft: #46443a;
+  --text-muted: #5f5d50;
+  --accent: #56604b;   /* deepened sage for AA text contrast */
+  --accent-contrast: #f5f0e7;
+  --rule: rgba(44, 42, 36, 0.18);
+  --focus: #56604b;
+  --rule-strong: rgba(44, 42, 36, 0.42);
+  --detail: #87927b;
+  --wash-1: #a9c7b8;
+  --wash-2: #e2b7b0;
+  --plate: #f6efe9;
+}
+
+[data-novel='emma'] {
+  color-scheme: light;
+  --surface: #faf7f1;
+  --surface-raised: #ffffff;
+  --text: #191716;
+  --text-soft: #3a3331;
+  --text-muted: #6b605c;
+  --accent: #8a6a2f;   /* gold darkened to pass AA on ivory */
+  --accent-contrast: #faf7f1;
+  --rule: rgba(25, 23, 22, 0.14);
+  --focus: #501c2b;
+  --rule-strong: rgba(25, 23, 22, 0.4);
+  --detail: #b59a65;
+  --wash-1: #e2b7b0;
+  --wash-2: #dca35a;
+  --plate: #fffdf8;
+}
+
+[data-novel='persuasion'] {
+  color-scheme: light;
+  --surface: #d9dee1;
+  --surface-raised: #e8ecee;
+  --text: #1d2730;
+  --text-soft: #34414c;
+  --text-muted: #4d5b67;
+  --accent: #3e5568;
+  --accent-contrast: #eef1f3;
+  --rule: rgba(29, 39, 48, 0.18);
+  --focus: #3e5568;
+  --rule-strong: rgba(29, 39, 48, 0.42);
+  --detail: #7d93b2;
+  --wash-1: #7d93b2;
+  --wash-2: #a9c7b8;
+  --plate: #eef1f3;
+}
+
+[data-novel='mansfield'] {
+  color-scheme: dark;
+  --surface: #232a24;
+  --surface-raised: #2d352e;
+  --text: #ece6da;
+  --text-soft: #d2cbbd;
+  --text-muted: #a8ad9c;
+  --accent: #a9b49b;
+  --accent-contrast: #1b211c;
+  --rule: rgba(236, 230, 218, 0.18);
+  --focus: #c9d1bc;
+  --rule-strong: rgba(236, 230, 218, 0.45);
+  --detail: #a9b49b;
+  --wash-1: #87927b;
+  --wash-2: #5b6577;
+  --plate: #1b211c;
+}
+
+[data-novel='northanger'] {
+  color-scheme: dark;
+  --surface: #121013;
+  --surface-raised: #1d1a1f;
+  --text: #ece4d8;
+  --text-soft: #cfc4b6;
+  --text-muted: #9a8f86;
+  --accent: #c9a2a0;
+  --accent-contrast: #121013;
+  --rule: rgba(236, 228, 216, 0.14);
+  --focus: #d8c79f;
+  --rule-strong: rgba(236, 228, 216, 0.4);
+  --detail: #b59a65;
+  --wash-1: #5b6577;
+  --wash-2: #501c2b;
+  --plate: #0b0a0c;
+}

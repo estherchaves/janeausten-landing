@@ -1,0 +1,58 @@
+.progress {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.label {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.label :global(.numeral) {
+  color: var(--text);
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.done {
+  color: var(--c-gold-soft);
+}
+
+.current {
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--c-rose);
+}
+
+.thread {
+  display: block;
+  height: 1px;
+  background: var(--rule);
+}
+
+.thread span {
+  display: block;
+  height: 100%;
+  background: var(--c-rose);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}

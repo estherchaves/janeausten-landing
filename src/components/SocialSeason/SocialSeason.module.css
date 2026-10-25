@@ -1,0 +1,336 @@
+.room {
+  background-color: var(--surface);
+  background-image: var(--speckle);
+  background-blend-mode: soft-light;
+  overflow: hidden;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--space-6);
+  align-items: end;
+}
+
+.introCopy {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.lead {
+  max-width: 40ch;
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+  color: var(--text-soft);
+}
+
+.legend {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legend svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--c-gold-soft);
+}
+
+.legend strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* --- Invitation cards ------------------------------------------------------ */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  display: flex;
+}
+
+.slot:nth-child(even) {
+  margin-top: var(--space-7);
+}
+
+.invite {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  width: 100%;
+  padding: var(--space-5) var(--space-4) var(--space-5);
+  border: 0;
+  background-color: var(--c-ivory);
+  background-image: var(--speckle);
+  color: var(--c-ink);
+  text-align: start;
+  box-shadow: 0 24px 40px -24px rgba(0, 0, 0, 0.6);
+  transform: rotate(var(--tilt));
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* Deckle: an inner hairline frame, as on engraved cards */
+.invite::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(80, 28, 43, 0.35);
+  pointer-events: none;
+}
+
+.invite:hover,
+.invite:focus-visible {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow: 0 34px 50px -24px rgba(0, 0, 0, 0.7);
+}
+
+.invite:focus-visible {
+  outline: 2px solid var(--c-gold-soft);
+  outline-offset: 6px;
+}
+
+.date {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--c-burgundy);
+}
+
+.day {
+  font-size: 2.75rem;
+  line-height: 1;
+}
+
+.month {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+.vignette {
+  max-width: 120px;
+  color: var(--c-ink-soft);
+}
+
+.inviteTitle {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+
+.place {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--c-ink-muted);
+}
+
+.summary {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--c-ink-soft);
+}
+
+.open {
+  margin-top: var(--space-2);
+  justify-self: start;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--c-burgundy);
+  border-bottom: 1px solid currentColor;
+}
+
+/* --- Dialog -------------------------------------------------------------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  place-items: center;
+  padding: calc(env(safe-area-inset-top, 0px) + var(--space-5)) max(16px, env(safe-area-inset-right, 0px))
+    calc(env(safe-area-inset-bottom, 0px) + var(--space-5)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(25, 23, 22, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  grid-template-areas:
+    'head vignette'
+    'body body';
+  gap: var(--space-5);
+  width: min(100%, 44rem);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  background-color: var(--c-ivory);
+  color: var(--c-ink);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  --text: var(--c-ink);
+  --text-muted: var(--c-ink-muted);
+  --rule: var(--c-line);
+  --focus: var(--c-burgundy);
+}
+
+.close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.panelHead {
+  grid-area: head;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.panelTitle {
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+}
+
+.panelPlace {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--c-burgundy);
+}
+
+.panelVignette {
+  grid-area: vignette;
+  align-self: center;
+  color: var(--c-ink-soft);
+}
+
+.panelBody {
+  grid-area: body;
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--c-line);
+}
+
+.block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.block p:last-child {
+  color: var(--c-ink-soft);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--c-ink-muted);
+}
+
+.tag svg {
+  width: 14px;
+  height: 14px;
+}
+
+.fiction {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+}
+
+.history {
+  padding: var(--space-4) var(--space-5);
+  background: rgba(135, 146, 123, 0.16);
+  border-left: 2px solid var(--c-sage);
+}
+
+.history .tag {
+  color: #4f5a45;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .calendar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .slot:nth-child(even) {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calendar {
+    display: flex;
+    gap: var(--space-4);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: var(--space-4) var(--gutter) var(--space-6);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .slot {
+    flex: 0 0 min(78vw, 280px);
+    scroll-snap-align: center;
+  }
+
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'head'
+      'vignette'
+      'body';
+    padding: var(--space-7) var(--space-5) var(--space-5);
+  }
+
+  .panelVignette {
+    width: 120px;
+  }
+}

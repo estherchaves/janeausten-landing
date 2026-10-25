@@ -1,0 +1,24 @@
+.vignette {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#ink-wobble);
+}
+
+.flame {
+  fill: var(--c-ochre);
+  stroke: none;
+}
+
+.leaf {
+  fill: rgba(157, 181, 122, 0.55);
+}
+
+.lace {
+  stroke-dasharray: 2 3;
+}

@@ -1,0 +1,80 @@
+.button {
+  position: fixed;
+  right: calc(max(16px, env(safe-area-inset-right, 0px)) + 4px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  z-index: var(--z-nav);
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--c-burgundy);
+  color: var(--c-ivory);
+  box-shadow: 0 10px 24px -12px rgba(25, 23, 22, 0.7);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.ring {
+  position: absolute;
+  inset: 2px;
+  transform: rotate(-90deg);
+}
+
+.track,
+.fill {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.track {
+  stroke: rgba(245, 240, 231, 0.2);
+}
+
+.fill {
+  stroke: var(--c-gold-soft);
+  transition: stroke-dashoffset 120ms linear;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.tip {
+  position: absolute;
+  right: calc(100% + 10px);
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  white-space: nowrap;
+  color: var(--c-burgundy);
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.button:hover .icon,
+.button:focus-visible .icon {
+  transform: translateY(-3px);
+}
+
+.button:hover .tip,
+.button:focus-visible .tip {
+  opacity: 1;
+  transform: none;
+}

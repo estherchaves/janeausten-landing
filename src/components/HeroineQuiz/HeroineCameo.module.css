@@ -1,0 +1,46 @@
+.cameo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(9rem, 6rem + 8vw, 13rem);
+  aspect-ratio: 4 / 5;
+  flex: none;
+  isolation: isolate;
+}
+
+.wash {
+  inset: -6%;
+}
+
+.oval {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 82%;
+  height: 92%;
+  border-radius: 50%;
+  background: var(--surface);
+  background-image: var(--speckle);
+  box-shadow:
+    0 0 0 6px var(--surface),
+    0 0 0 7px var(--detail),
+    0 18px 30px -18px rgba(0, 0, 0, 0.6);
+}
+
+.initial {
+  font-family: var(--font-hand);
+  font-size: clamp(4.5rem, 3rem + 4vw, 7rem);
+  line-height: 1;
+  color: var(--accent);
+  transform: translateY(6%);
+}
+
+.sprig {
+  position: absolute;
+  z-index: 2;
+  bottom: -6%;
+  left: -24%;
+  width: 70%;
+  transform: rotate(-18deg);
+}

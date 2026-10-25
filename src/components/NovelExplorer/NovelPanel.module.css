@@ -1,0 +1,331 @@
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-areas:
+    'header header'
+    'plate  body'
+    'quote  quote'
+    'matters matters'
+    'pager  pager';
+  gap: var(--space-6) var(--space-6);
+}
+
+.header {
+  grid-area: header;
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  color: var(--text-muted);
+}
+
+.meta .numeral {
+  color: var(--accent);
+  letter-spacing: 0.12em;
+}
+
+.title {
+  font-size: var(--fs-h1);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.original {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.note {
+  position: absolute;
+  right: 0;
+  bottom: -0.4rem;
+  transform: rotate(-5deg);
+  color: var(--accent);
+}
+
+.plate {
+  grid-area: plate;
+}
+
+.body {
+  grid-area: body;
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.description {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.facts dt {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.facts dd {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+}
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.themes li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-small);
+}
+
+.quote {
+  grid-area: quote;
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.quote blockquote {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.translation {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-style: italic;
+  line-height: 1.15;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.originalQuote {
+  max-width: 60ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  color: var(--text-soft);
+}
+
+.matters {
+  grid-area: matters;
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--space-5);
+  align-items: baseline;
+}
+
+.mattersTitle {
+  font-size: var(--fs-h4);
+  line-height: 1.1;
+}
+
+.mattersTitle em {
+  font-family: var(--font-serif);
+  color: var(--accent);
+}
+
+.matters p {
+  color: var(--text-soft);
+  max-width: 52ch;
+}
+
+.pager {
+  grid-area: pager;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.pager :global(.btn) {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: var(--fs-small);
+}
+
+/* ---------------------------------------------------------------------------
+   Six compositions. Same content, different rhetoric.
+   --------------------------------------------------------------------------- */
+
+/* Pride: dramatic, oversized, the quote in gilt on the dark ground */
+.panel[data-layout='dramatic'] .title {
+  font-size: clamp(3rem, 1.6rem + 5.4vw, 7.5rem);
+}
+
+.panel[data-layout='dramatic'] .translation {
+  color: var(--accent);
+  font-size: var(--fs-h2);
+}
+
+/* Sense: delicate and centred, smaller voice */
+.panel[data-layout='delicate'] .header {
+  justify-items: center;
+  text-align: center;
+}
+
+.panel[data-layout='delicate'] .title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+}
+
+.panel[data-layout='delicate'] .note {
+  position: static;
+  margin-top: var(--space-2);
+}
+
+.panel[data-layout='delicate'] .quote {
+  justify-items: center;
+  text-align: center;
+  border-style: dashed;
+}
+
+/* Emma: bright, playful margin notes */
+.panel[data-layout='bright'] .title {
+  font-family: var(--font-hand);
+  font-size: clamp(4.5rem, 2rem + 8vw, 9rem);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--c-burgundy);
+}
+
+.panel[data-layout='bright'] .note {
+  right: 8%;
+  bottom: 40%;
+  transform: rotate(-9deg);
+  color: var(--c-burgundy);
+}
+
+/* Persuasion: airy, wide spacing, a slower read */
+.panel[data-layout='airy'] {
+  row-gap: var(--space-8);
+}
+
+.panel[data-layout='airy'] .title {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.panel[data-layout='airy'] .quote {
+  border: 0;
+  padding-inline-start: var(--space-6);
+  border-left: 1px solid var(--rule-strong);
+}
+
+/* Mansfield: contained, framed, strict */
+.panel[data-layout='contained'] {
+  padding: var(--space-6);
+  border: 1px solid var(--rule-strong);
+  outline: 1px solid var(--rule);
+  outline-offset: 6px;
+}
+
+.panel[data-layout='contained'] .title {
+  font-size: var(--fs-h2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Northanger: gothic, shadowed capitals, the original title like a tombstone */
+.panel[data-layout='gothic'] .title {
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0.06em 0.25em rgba(201, 162, 160, 0.25);
+}
+
+.panel[data-layout='gothic'] .original {
+  font-family: var(--font-display);
+  font-style: normal;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: var(--fs-small);
+}
+
+.panel[data-layout='gothic'] .quote {
+  border-color: var(--detail);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 700px) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'header'
+      'plate'
+      'body'
+      'quote'
+      'matters'
+      'pager';
+    gap: var(--space-5);
+  }
+
+  .plate {
+    width: 82%;
+    justify-self: center;
+  }
+
+  .note {
+    position: static;
+    justify-self: end;
+    margin-top: var(--space-2);
+  }
+
+  .panel[data-layout='bright'] .note {
+    position: static;
+  }
+
+  .matters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel[data-layout='contained'] {
+    padding: var(--space-4);
+  }
+
+  .panel[data-layout='airy'] {
+    row-gap: var(--space-6);
+  }
+
+  .pager :global(.btn) {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+}

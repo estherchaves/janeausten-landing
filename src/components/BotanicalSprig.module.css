@@ -1,0 +1,28 @@
+.sprig {
+  overflow: visible;
+  pointer-events: auto;
+}
+
+.stem {
+  fill: none;
+  stroke: var(--c-sepia);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  filter: url(#ink-wobble);
+}
+
+.leaf {
+  stroke: #2b2a22;
+  stroke-width: 0.9;
+  stroke-linejoin: round;
+}
+
+.tone0 { fill: rgba(157, 181, 122, 0.78); }
+.tone1 { fill: rgba(135, 146, 123, 0.72); }
+.tone2 { fill: rgba(190, 205, 140, 0.7); }
+
+.vein {
+  fill: none;
+  stroke: rgba(43, 42, 34, 0.45);
+  stroke-width: 0.6;
+}

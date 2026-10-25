@@ -1,0 +1,30 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+}
+
+.ring {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  border-radius: 50%;
+  background: rgba(80, 28, 43, 0.9);
+  color: var(--c-ivory);
+  transform: scale(0);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.visible .ring {
+  transform: scale(1);
+}
+
+.label {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1;
+}

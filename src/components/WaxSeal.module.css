@@ -1,0 +1,57 @@
+.seal {
+  --wax: #6d2234;
+  --wax-dark: #3a121e;
+  --wax-light: #9b3d52;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  flex: none;
+  /* Irregular, poured edge */
+  border-radius: 47% 53% 51% 49% / 52% 46% 54% 48%;
+  background:
+    radial-gradient(circle at 34% 30%, var(--wax-light) 0%, transparent 42%),
+    radial-gradient(circle at 50% 50%, var(--wax) 0%, var(--wax) 55%, var(--wax-dark) 100%);
+  box-shadow:
+    inset -3px -4px 8px rgba(0, 0, 0, 0.35),
+    inset 2px 3px 6px rgba(255, 255, 255, 0.12),
+    0 6px 14px -6px rgba(25, 23, 22, 0.6);
+  transform: rotate(-8deg);
+}
+
+.sage {
+  --wax: #5f6a55;
+  --wax-dark: #343b2e;
+  --wax-light: #8d9a80;
+}
+
+.ink {
+  --wax: #2a2524;
+  --wax-dark: #0e0c0c;
+  --wax-light: #4a4241;
+}
+
+.ring {
+  display: grid;
+  place-items: center;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.monogram {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: calc(var(--size) * 0.3);
+  line-height: 1;
+  color: var(--wax-dark);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 -1px 0 rgba(0, 0, 0, 0.35);
+}
